@@ -43,11 +43,11 @@ This mode sets your coordinates upon opening F3 to 0 0 0.
 
 ### On
 
-To enable biome spoofing enter a valid [biome id](https://minecraft.wiki/w/Biome#Biome_IDs) into the text widget.
+To enable biome spoofing, enter a valid [biome id](https://minecraft.wiki/w/Biome#Biome_IDs) into the text widget.
 
 ### Off
 
-To disable biome spoofing simply leave the text empty.
+To disable biome spoofing, simply leave the text empty.
 
 ## Block Rotations
 
