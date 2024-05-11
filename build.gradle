@@ -35,8 +35,25 @@ dependencies {
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
     // Compatibility
+    modCompileOnly "maven.modrinth:modmenu:${project.modmenu_version}"
+    modRuntimeOnly "maven.modrinth:modmenu:${project.modmenu_version}"
     modCompileOnly "maven.modrinth:betterf3:${project.betterf3_version}"
     modRuntimeOnly "maven.modrinth:betterf3:${project.betterf3_version}"
+    modCompileOnly "maven.modrinth:xaeros-world-map:${project.xaeroworldmap_version}"
+    modRuntimeOnly "maven.modrinth:xaeros-world-map:${project.xaeroworldmap_version}"
+    modCompileOnly "maven.modrinth:xaeros-minimap:${project.xaerominimap_version}"
+    modRuntimeOnly "maven.modrinth:xaeros-minimap:${project.xaerominimap_version}"
+    //modCompileOnly "maven.modrinth:xaeros-minimap-fair:${project.xaerominimapfair_version}"
+    //modRuntimeOnly "maven.modrinth:xaeros-minimap-fair:${project.xaerominimapfair_version}"
+    // Open Parties and Claims + dependencies
+    compileOnly 'com.electronwill.night-config:core:3.6.7'
+    runtimeOnly 'com.electronwill.night-config:core:3.6.7'
+    compileOnly 'com.electronwill.night-config:toml:3.6.7'
+    runtimeOnly 'com.electronwill.night-config:toml:3.6.7'
+    modCompileOnly "maven.modrinth:forge-config-api-port:${project.forgeconfigapiport_version}"
+    modRuntimeOnly "maven.modrinth:forge-config-api-port:${project.forgeconfigapiport_version}"
+    modCompileOnly "maven.modrinth:open-parties-and-claims:${project.openpartiesandclaims_version}"
+    modRuntimeOnly "maven.modrinth:open-parties-and-claims:${project.openpartiesandclaims_version}"
 }
 
 processResources {

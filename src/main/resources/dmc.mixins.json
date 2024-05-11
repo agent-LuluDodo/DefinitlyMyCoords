@@ -9,8 +9,13 @@
     "betterf3.ChunksModuleMixin",
     "betterf3.CoordsModuleMixin",
     "betterf3.TargetModuleMixin",
+    "vanilla.F3MenuMixin",
     "vanilla.ObscureRotationsMixin",
-    "vanilla.F3MenuMixin"
+    "vanilla.WorldViewMixin",
+    "xaerominimap.InfoDisplayMixin",
+    "xaeroworldmap.GuiMapMixin",
+    "xaeroworldmap.PlayerTrackerMapElementReaderMixin",
+    "xaeroworldmap.WaypointReaderMixin"
   ],
   "plugin": "de.luludodo.dmc.mixins.DMCMixinPlugin",
   "injectors": {
