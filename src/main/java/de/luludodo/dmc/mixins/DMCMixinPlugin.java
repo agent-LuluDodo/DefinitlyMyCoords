@@ -2,7 +2,6 @@ package de.luludodo.dmc.mixins;
 
 import com.google.common.collect.ImmutableMap;
 import de.luludodo.dmc.log.Log;
-import de.luludodo.dmc.mixins.betterf3.ChunksModuleMixin;
 import net.fabricmc.loader.api.FabricLoader;
 import org.objectweb.asm.tree.ClassNode;
 import org.spongepowered.asm.mixin.extensibility.IMixinConfigPlugin;
@@ -17,7 +16,10 @@ public class DMCMixinPlugin implements IMixinConfigPlugin {
 
     // mixins.*.<value>.*, condition
     private final Map<String, Supplier<Boolean>> conditions = ImmutableMap.of(
-            "betterf3", () -> FabricLoader.getInstance().isModLoaded("betterf3")
+            "betterf3", () -> FabricLoader.getInstance().isModLoaded("betterf3"),
+            "xaeroworldmap", () -> FabricLoader.getInstance().isModLoaded("xaeroworldmap"),
+            "xaerominimap", () -> FabricLoader.getInstance().isModLoaded("xaerominimap") ||
+                    FabricLoader.getInstance().isModLoaded("xaerominimapfair")
     );
 
     // Important method
@@ -34,7 +36,7 @@ public class DMCMixinPlugin implements IMixinConfigPlugin {
         if (apply) {
             Log.info("Applying Mixin (" + mixinsClassName + ") to " + targetClassName + "!");
         } else {
-            Log.info("Skipping Mixin (" + mixinsClassName + ") to " + targetClassName + "!");
+            Log.info("Skipping Mixin (" + mixinsClassName + ")!");
         }
         return apply;
     }

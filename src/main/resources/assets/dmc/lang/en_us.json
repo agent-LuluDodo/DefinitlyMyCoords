@@ -13,6 +13,7 @@
   "options.dmc.random-rotations": "Random Rotations",
   "options.dmc.save": "Save",
   "options.dmc.cancel": "Cancel",
+  "options.dmc.biome": "Spoof Biome",
   "tooltip.dmc.mode-relative": "Changes your position to x, y and z.",
   "tooltip.dmc.mode-absolute": "Changes 0 0 0 to x, y and z.",
   "tooltip.dmc.mode-custom": "Changes your position upon opening F3 to 0 0 0.",
@@ -23,5 +24,6 @@
   "tooltip.dmc.info-mode": "Toggles tooltips.",
   "tooltip.dmc.redo-rotations": "Changes the modifier for random rotations.",
   "tooltip.dmc.save": "Saves all changes made.",
-  "tooltip.dmc.cancel": "Discards all changes made."
+  "tooltip.dmc.cancel": "Discards all changes made.",
+  "tooltip.dmc.biome": "If empty does nothing. Otherwise spoofs biome to entered value."
 }

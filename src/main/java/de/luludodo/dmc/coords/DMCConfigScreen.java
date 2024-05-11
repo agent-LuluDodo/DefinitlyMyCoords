@@ -1,8 +1,10 @@
 package de.luludodo.dmc.coords;
 
+import de.luludodo.dmc.api.DMCApi;
 import de.luludodo.dmc.config.ConfigAPI;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.Element;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
@@ -12,6 +14,7 @@ import net.minecraft.client.option.GameOptions;
 import net.minecraft.client.option.SimpleOption;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.Text;
+import net.minecraft.util.Identifier;
 
 import java.util.List;
 import java.util.Optional;
@@ -26,7 +29,7 @@ public class DMCConfigScreen extends Screen {
     private TextFieldWidget offsetY;
     private TextFieldWidget offsetZ;
 
-    private final Element[] elements = new Element[8];
+    private final Element[] elements = new Element[9];
     private boolean infoMode;
 
     private long oldX = 0;
@@ -34,6 +37,8 @@ public class DMCConfigScreen extends Screen {
     private long oldZ = 0;
     private Mode oldMode = null;
     private boolean oldRandomRotations = true;
+    private boolean oldSpoofBiome;
+    private Identifier oldBiome;
     private boolean oldDebugEnabled = false;
 
     public DMCConfigScreen(Screen parent, GameOptions gameOptions) {
@@ -47,6 +52,8 @@ public class DMCConfigScreen extends Screen {
         oldZ = ConfigAPI.getOffsetZ();
         oldMode = ConfigAPI.getMode();
         oldRandomRotations = ConfigAPI.getObscureRotations();
+        oldSpoofBiome = ConfigAPI.getSpoofBiome();
+        oldBiome = ConfigAPI.getBiome();
         oldDebugEnabled = client.options.debugEnabled;
         client.options.debugEnabled = true;
         randomRotations = SimpleOption.ofBoolean("options.dmc.random-rotations", ConfigAPI.getObscureRotations(), value -> {
@@ -114,8 +121,26 @@ public class DMCConfigScreen extends Screen {
             elements[3] = addDrawableChild(offsetY);
             elements[4] = addDrawableChild(offsetZ);
         }
-        elements[7] = addDrawableChild(ButtonWidget.builder(Text.translatable("options.dmc.cancel"), button -> cancel()).dimensions(width / 2 - 100, height / 6 + 168, 200, 20).build());
-        elements[6] = addDrawableChild(ButtonWidget.builder(Text.translatable("options.dmc.save"), button -> close()).dimensions(width / 2 - 100, height / 6 + 144, 200, 20).build());
+        elements[6] = addDrawableChild(new TextFieldWidget(textRenderer, width / 2 - 60, height / 6 + 120, 160, 20, Text.translatable("options.dmc.biome")));
+        ((TextFieldWidget) elements[6]).setChangedListener(biome -> {
+            if (biome.isEmpty()) {
+                ConfigAPI.setSpoofBiome(false);
+                client.worldRenderer.reload();
+            } else {
+                Identifier id = Identifier.tryParse(biome);
+                if (id == null) return;
+                if (client.world == null) return;
+                if (!DMCApi.isValidBiome(client.world, id)) return;
+                ConfigAPI.setBiome(id);
+                ConfigAPI.setSpoofBiome(true);
+                client.worldRenderer.reload();
+            }
+        });
+        if (ConfigAPI.getSpoofBiome()) {
+            ((TextFieldWidget) elements[6]).setText(ConfigAPI.getBiome().toString());
+        }
+        elements[7] = addDrawableChild(ButtonWidget.builder(Text.translatable("options.dmc.save"), button -> close()).dimensions(width / 2 - 100, height / 6 + 144, 200, 20).build());
+        elements[8] = addDrawableChild(ButtonWidget.builder(Text.translatable("options.dmc.cancel"), button -> cancel()).dimensions(width / 2 - 100, height / 6 + 168, 200, 20).build());
     }
 
     private void onModeChange(CyclingButtonWidget<Mode> widget, Mode mode) {
@@ -200,12 +225,14 @@ public class DMCConfigScreen extends Screen {
         ConfigAPI.setOffsetZ(oldZ);
         ConfigAPI.setMode(oldMode);
         ConfigAPI.setObscureRotations(oldRandomRotations);
+        ConfigAPI.setSpoofBiome(oldSpoofBiome);
+        ConfigAPI.setBiome(oldBiome);
         client.worldRenderer.reload();
         close();
     }
 
     private static int validNumber(String value) {
-        if(value.length() == 0) {
+        if (value.isEmpty()) {
             return 0;
         }
         try {
@@ -216,14 +243,25 @@ public class DMCConfigScreen extends Screen {
         return 1;
     }
 
+    private static int validBiome(MinecraftClient client, String value) {
+        if (value.isEmpty() || client.world == null) {
+            return 0;
+        }
+        Identifier id = Identifier.tryParse(value);
+        if (id == null) return 2;
+        if (!DMCApi.isValidBiome(client.world, id)) return 2;
+        return 1;
+    }
+
     @Override
     public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
         drawCenteredTextWithShadow(matrices, textRenderer, title.asOrderedText(), width / 2, 5, 0xFFFFFF);
         if (mode.getValue() != Mode.CUSTOM) {
-            drawCenteredTextWithShadowOfOffsetValue(offsetX, "X", 38, matrices);
-            drawCenteredTextWithShadowOfOffsetValue(offsetY, "Y", 62, matrices);
-            drawCenteredTextWithShadowOfOffsetValue(offsetZ, "Z", 86, matrices);
+            drawOffsetText(offsetX, "X", 38, matrices);
+            drawOffsetText(offsetY, "Y", 62, matrices);
+            drawOffsetText(offsetZ, "Z", 86, matrices);
         }
+        drawBiomeText((TextFieldWidget) elements[6], matrices);
         if (infoMode) infoMode(matrices, mouseX, mouseY, delta);
         super.render(matrices, mouseX, mouseY, delta);
     }
@@ -243,8 +281,9 @@ public class DMCConfigScreen extends Screen {
                 case 3 -> renderTooltip(matrices, "offset-y", width / 2 + 95, mouseY);
                 case 4 -> renderTooltip(matrices, "offset-z", width / 2 + 95, mouseY);
                 case 5 -> renderTooltip(matrices, "info-mode", mouseX, mouseY);
-                case 6 -> renderTooltip(matrices, "save", mouseX, mouseY);
-                case 7 -> renderTooltip(matrices, "cancel", mouseX, mouseY);
+                case 6 -> renderTooltip(matrices, "biome", width / 2 + 95, mouseY);
+                case 7 -> renderTooltip(matrices, "save", mouseX, mouseY);
+                case 8 -> renderTooltip(matrices, "cancel", mouseX, mouseY);
             }
         }
     }
@@ -253,9 +292,15 @@ public class DMCConfigScreen extends Screen {
         renderTooltip(matrices, List.of(Text.translatable("tooltip.dmc." + name)), x, y);
     }
 
-    private void drawCenteredTextWithShadowOfOffsetValue(TextFieldWidget offset, String name, int heightOffset, MatrixStack matrices) {
+    private void drawOffsetText(TextFieldWidget offset, String name, int heightOffset, MatrixStack matrices) {
         int V = validNumber(offset.getText());
         int color = V == 0? 0xFFFFFF: V == 1? 0x00FF00: 0xFF0000;
-        drawCenteredTextWithShadow(matrices, textRenderer, Text.of(name).asOrderedText(), width / 2 - 88, height / 6 + heightOffset, color);
+        drawCenteredTextWithShadow(matrices, textRenderer, Text.literal(name).asOrderedText(), width / 2 - 88, height / 6 + heightOffset, color);
+    }
+
+    private void drawBiomeText(TextFieldWidget biome, MatrixStack matrices) {
+        int valid = validBiome(client, biome.getText());
+        int color = valid == 0? 0xFFFFFF: valid == 1? 0x00FF00: 0xFF0000;
+        drawCenteredTextWithShadow(matrices, textRenderer, Text.literal("Biome").asOrderedText(), width / 2 - 80, height / 6 + 126, color);
     }
 }

@@ -2,6 +2,7 @@ package de.luludodo.dmc.config;
 
 import de.luludodo.dmc.client.DefinitelyMyCoordsClient;
 import de.luludodo.dmc.coords.Mode;
+import net.minecraft.util.Identifier;
 
 public class ConfigAPI {
     public static Mode getMode() {
@@ -24,6 +25,14 @@ public class ConfigAPI {
         return (boolean) DefinitelyMyCoordsClient.config.get("obscure-rotations");
     }
 
+    public static boolean getSpoofBiome() {
+        return (boolean) DefinitelyMyCoordsClient.config.get("spoof-biome");
+    }
+
+    public static Identifier getBiome() {
+        return (Identifier) DefinitelyMyCoordsClient.config.get("biome");
+    }
+
     public static void setMode(Mode mode) {
         DefinitelyMyCoordsClient.config.set("mode", mode);
     }
@@ -44,7 +53,11 @@ public class ConfigAPI {
         DefinitelyMyCoordsClient.config.set("obscure-rotations", obscureRotations);
     }
 
-    public static void setOffsetRotations(int offsetRotations) {
-        DefinitelyMyCoordsClient.config.set("offset-rotations", offsetRotations);
+    public static void setSpoofBiome(boolean spoofBiome) {
+        DefinitelyMyCoordsClient.config.set("spoof-biome", spoofBiome);
+    }
+
+    public static void setBiome(Identifier biome) {
+        DefinitelyMyCoordsClient.config.set("biome", biome);
     }
 }
