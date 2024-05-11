@@ -16,7 +16,7 @@ You can configure the settings key in the keybindings menu.
 
 ## Compatibility
 
-A non-exausive list of compatible mods.  
+A non-exhaustive list of compatible mods.  
 These mods are neither made by me nor affiliated with me.
 
 - [BetterF3](https://modrinth.com/mod/betterf3)
