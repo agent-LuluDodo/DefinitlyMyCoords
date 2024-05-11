@@ -1,5 +1,5 @@
 ## Download on [Modrinth](https://modrinth.com/mod/definitelymycoords)!  
-![Settings Menu](https://cdn-raw.modrinth.com/data/M4Fyp5vW/images/fbee717db5fe9c146962d354659b76e6f72c1a4b.png)
+![Settings Menu](https://cdn.modrinth.com/data/M4Fyp5vW/images/01d7761e5ae7ef0ea2f50b00b947c29b81148703.png)
 DefinitelyMyCoords helps you hide your coordinates on the F3 screen with 3 different modes.
 
 # Why do I want this mod?
@@ -14,6 +14,16 @@ check the direction you are facing, etc.
 To open the mods settings, press the **F6** key or your configured key.  
 You can configure the settings key in the keybindings menu.
 
+## Compatibility
+
+A non-exausive list of compatible mods.  
+These mods are neither made by me nor affiliated with me.
+
+- [BetterF3](https://modrinth.com/mod/betterf3)
+- [Xaero's World Map](https://modrinth.com/mod/xaeros-world-map)
+- [Xaero's Minimap](https://modrinth.com/mod/xaeros-minimap)
+- [Xaero's Minimap (Fair-Play)](https://modrinth.com/mod/xaeros-minimap-fair)
+
 ## Modes
 
 ### Relative
@@ -27,6 +37,17 @@ The coordinates you enter are relative to 0 0 0. In this case, if you are standi
 ### Custom
 
 This mode sets your coordinates upon opening F3 to 0 0 0.
+
+## Biome Spoofing
+[suggested by @kittenvr](https://github.com/agent-LuluDodo/DefinitelyMyCoords/issues/5)
+
+### On
+
+To enable biome spoofing enter a valid [biome id](https://minecraft.wiki/w/Biome#Biome_IDs) into the text widget.
+
+### Off
+
+To disable biome spoofing simply leave the text empty.
 
 ## Block Rotations
 
