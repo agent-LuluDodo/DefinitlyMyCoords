@@ -1,20 +1,27 @@
 package de.luludodo.dmc.config;
 
-import com.google.gson.*;
+import de.luludodo.dmc.api.config.JsonMapConfig;
+import de.luludodo.dmc.config.serializer.ConfigSerializer;
+import de.luludodo.dmc.coords.Mode;
+import net.minecraft.util.Identifier;
 
 import java.util.Map;
-import java.util.function.Function;
 
-public abstract class Config implements JsonSerializer<Map<String, Object>>, JsonDeserializer<Map<String, Object>> {
-    protected final String filename;
-    public Config(String filename) {
-        this.filename = filename;
+public class Config extends JsonMapConfig<String, Object> {
+    public Config() {
+        super("dmc/config", new ConfigSerializer());
     }
 
-    abstract Map<String, Object> getDefaultConfig();
-
-    @SuppressWarnings("unchecked")
-    protected <T> T getOrDefault(JsonObject config, String memberName, Function<JsonElement, T> parse) {
-        return config.has(memberName)? parse.apply(config.get(memberName)) : (T) getDefaultConfig().get(memberName);
+    @Override
+    protected Map<String, Object> getDefaults() {
+        return Map.of(
+                "mode", Mode.RELATIVE,
+                "offset-x", 0L,
+                "offset-y", 0L,
+                "offset-z", 0L,
+                "obscure-rotations", false,
+                "spoof-biome", false,
+                "biome", new Identifier("minecraft", "plains")
+        );
     }
 }
