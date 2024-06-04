@@ -17,11 +17,11 @@ public class Keybindings {
         // END KeyBindings
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             // Variables
-            MinecraftClient mcClient = MinecraftClient.getInstance();
-            Screen screen = mcClient.currentScreen;
-            GameOptions gameOptions = mcClient.options;
+            Screen screen = client.currentScreen;
+            GameOptions gameOptions = client.options;
             // Call Method
-            if(f5Keybinding.wasPressed()) client.setScreen(new DMCConfigScreen(screen, gameOptions));
+            if (f5Keybinding.wasPressed())
+                client.setScreen(new DMCConfigScreen(screen, gameOptions));
             // END Call Method
         });
     }
