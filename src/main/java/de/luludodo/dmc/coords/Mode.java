@@ -12,7 +12,6 @@ public enum Mode implements TranslatableOption {
 
     private final int id;
     private final String translationKey;
-
     Mode(int id, String translationKey) {
         this.id = id;
         this.translationKey = translationKey;
