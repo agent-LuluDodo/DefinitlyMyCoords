@@ -4,12 +4,12 @@
   "package": "de.luludodo.dmc.mixins",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "sodiumextra.SodiumExtraHudMixin"
   ],
   "client": [
     "betterf3.ChunksModuleMixin",
     "betterf3.CoordsModuleMixin",
     "betterf3.TargetModuleMixin",
+    "sodiumextra.SodiumExtraHudMixin",
     "vanilla.F3MenuMixin",
     "vanilla.ObscureRotationsMixin",
     "vanilla.WorldViewMixin",
