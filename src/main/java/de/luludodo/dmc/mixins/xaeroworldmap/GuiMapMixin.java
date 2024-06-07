@@ -25,7 +25,7 @@ public class GuiMapMixin {
                     ordinal = 0
             )
     )
-    public void rebindmykeys$topCoords(DrawContext guiGraphics, TextRenderer font, String string, int x, int y, int color, float bgRed, float bgGreen, float bgBlue, float bgAlpha, VertexConsumer backgroundVertexBuffer) {
+    public void definitelymycoords$topCoords(DrawContext guiGraphics, TextRenderer font, String string, int x, int y, int color, float bgRed, float bgGreen, float bgBlue, float bgAlpha, VertexConsumer backgroundVertexBuffer) {
         String[] parts = string.split(" ");
         String mouseXs = parts[1];
         String mouseYs = parts[3];
@@ -66,7 +66,7 @@ public class GuiMapMixin {
                     ordinal = 2
             )
     )
-    public void rebindmykeys$rightClickCoords(Args args) {
+    public void definitelymycoords$rightClickCoords(Args args) {
         try {
             Object[] formatArgs = args.get(1);
             formatArgs[0] = DMCApi.getOffsetBlockX((int) formatArgs[0]);

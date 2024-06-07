@@ -12,7 +12,6 @@ public enum Mode implements TranslatableOption {
 
     private final int id;
     private final String translationKey;
-
     Mode(int id, String translationKey) {
         this.id = id;
         this.translationKey = translationKey;
@@ -26,14 +25,5 @@ public enum Mode implements TranslatableOption {
     @Override
     public String getTranslationKey() {
         return translationKey;
-    }
-
-    @Override
-    public String toString() {
-        return switch (this) {
-            case RELATIVE -> "relative";
-            case ABSOLUTE -> "absolute";
-            case CUSTOM -> "custom";
-        };
     }
 }
