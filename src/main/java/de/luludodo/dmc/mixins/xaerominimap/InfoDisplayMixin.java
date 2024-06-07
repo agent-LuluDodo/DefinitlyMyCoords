@@ -18,7 +18,7 @@ public class InfoDisplayMixin {
             index = 6,
             argsOnly = true
     )
-    private static <T> InfoDisplayOnCompile<T> rebindmykeys$init(final InfoDisplayOnCompile<T> value) {
+    private static <T> InfoDisplayOnCompile<T> definitelymycoords$init(final InfoDisplayOnCompile<T> value) {
         return (
                 displayInfo,
                 compiler,

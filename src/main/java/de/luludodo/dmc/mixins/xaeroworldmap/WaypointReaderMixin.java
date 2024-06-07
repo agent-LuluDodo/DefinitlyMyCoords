@@ -18,7 +18,7 @@ public class WaypointReaderMixin {
                     ordinal = 0
             )
     )
-    public void rebindmykeys$coords(Args args) {
+    public void definitelymycoords$coords(Args args) {
         try {
             Object[] formatArgs = args.get(1);
             formatArgs[0] = DMCApi.getOffsetBlockX((int) formatArgs[0]);

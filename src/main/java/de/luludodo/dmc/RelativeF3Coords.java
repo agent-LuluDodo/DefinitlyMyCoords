@@ -1,5 +1,6 @@
 package de.luludodo.dmc;
 
+import me.jellysquid.mods.sodium.mixin.SodiumMixinPlugin;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.ingame.InventoryScreen;
