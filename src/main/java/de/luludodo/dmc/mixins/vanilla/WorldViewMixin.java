@@ -32,12 +32,12 @@ public interface WorldViewMixin {
                     ordinal = 0
             )
     )
-    default RegistryEntry<Biome> rebindmykeys$getBiome(BiomeAccess instance, BlockPos pos) {
+    default RegistryEntry<Biome> definitelymycoords$getBiome(BiomeAccess instance, BlockPos pos) {
         if (ConfigAPI.getSpoofBiome()) {
             if (DMCApi.isValidBiome((WorldView) this, ConfigAPI.getBiome())) {
-                return rebindmykeys$toEntry(ConfigAPI.getBiome());
+                return definitelymycoords$toEntry(ConfigAPI.getBiome());
             } else {
-                return rebindmykeys$toEntry(BiomeKeys.THE_VOID);
+                return definitelymycoords$toEntry(BiomeKeys.THE_VOID);
             }
         } else {
             return getBiomeAccess().getBiome(pos);
@@ -45,12 +45,12 @@ public interface WorldViewMixin {
     }
 
     @Unique
-    private RegistryEntry<Biome> rebindmykeys$toEntry(RegistryKey<Biome> biome) {
+    private RegistryEntry<Biome> definitelymycoords$toEntry(RegistryKey<Biome> biome) {
         return getRegistryManager().get(RegistryKeys.BIOME).entryOf(biome);
     }
 
     @Unique
-    private RegistryEntry<Biome> rebindmykeys$toEntry(Identifier biome) {
-        return rebindmykeys$toEntry(RegistryKey.of(RegistryKeys.BIOME, biome));
+    private RegistryEntry<Biome> definitelymycoords$toEntry(Identifier biome) {
+        return definitelymycoords$toEntry(RegistryKey.of(RegistryKeys.BIOME, biome));
     }
 }

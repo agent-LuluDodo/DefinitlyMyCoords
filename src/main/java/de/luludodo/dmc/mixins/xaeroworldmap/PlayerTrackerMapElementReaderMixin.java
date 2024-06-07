@@ -17,7 +17,7 @@ public class PlayerTrackerMapElementReaderMixin {
             ),
             index = 0
     )
-    public double rebindmykeys$x(double x) {
+    public double definitelymycoords$x(double x) {
         return DMCApi.getOffsetX(x);
     }
 
@@ -31,7 +31,7 @@ public class PlayerTrackerMapElementReaderMixin {
             ),
             index = 0
     )
-    public double rebindmykeys$y(double y) {
+    public double definitelymycoords$y(double y) {
         return DMCApi.getOffsetY(y);
     }
 
@@ -45,7 +45,7 @@ public class PlayerTrackerMapElementReaderMixin {
             ),
             index = 0
     )
-    public double rebindmykeys$z(double z) {
+    public double definitelymycoords$z(double z) {
         return DMCApi.getOffsetZ(z);
     }
 }

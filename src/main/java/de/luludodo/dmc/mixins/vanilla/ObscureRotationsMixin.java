@@ -9,21 +9,21 @@ import org.spongepowered.asm.mixin.injection.ModifyVariable;
 @Mixin(MathHelper.class)
 public class ObscureRotationsMixin {
     @ModifyVariable(method = "hashCode(III)J", at = @At("HEAD"), ordinal = 0, argsOnly = true)
-    private static int getX(int x) {
+    private static int definitelymycoords$getX(int x) {
         if (DMCApi.obscureRotations()) {
             return (int) DMCApi.getOffsetBlockX(x);
         }
         return x;
     }
     @ModifyVariable(method = "hashCode(III)J", at = @At("HEAD"), ordinal = 1, argsOnly = true)
-    private static int getY(int y) {
+    private static int definitelymycoords$getY(int y) {
         if (DMCApi.obscureRotations()) {
             return (int) DMCApi.getOffsetBlockY(y);
         }
         return y;
     }
     @ModifyVariable(method = "hashCode(III)J", at = @At("HEAD"), ordinal = 2, argsOnly = true)
-    private static int getZ(int z) {
+    private static int definitelymycoords$getZ(int z) {
         if (DMCApi.obscureRotations()) {
             return (int) DMCApi.getOffsetBlockZ(z);
         }
