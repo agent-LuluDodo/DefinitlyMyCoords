@@ -1,9 +1,10 @@
 package de.luludodo.dmc.mixins;
 
 import com.google.common.collect.ImmutableMap;
-import de.luludodo.dmc.log.Log;
 import net.fabricmc.loader.api.FabricLoader;
 import org.objectweb.asm.tree.ClassNode;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.spongepowered.asm.mixin.extensibility.IMixinConfigPlugin;
 import org.spongepowered.asm.mixin.extensibility.IMixinInfo;
 
@@ -13,13 +14,15 @@ import java.util.Set;
 import java.util.function.Supplier;
 
 public class DMCMixinPlugin implements IMixinConfigPlugin {
+    private static final Logger LOG = LoggerFactory.getLogger("DefinitelyMyCoords/Mixin");
 
     // mixins.*.<value>.*, condition
     private final Map<String, Supplier<Boolean>> conditions = ImmutableMap.of(
             "betterf3", () -> FabricLoader.getInstance().isModLoaded("betterf3"),
             "xaeroworldmap", () -> FabricLoader.getInstance().isModLoaded("xaeroworldmap"),
             "xaerominimap", () -> FabricLoader.getInstance().isModLoaded("xaerominimap") ||
-                    FabricLoader.getInstance().isModLoaded("xaerominimapfair")
+                    FabricLoader.getInstance().isModLoaded("xaerominimapfair"),
+            "sodiumextra", () -> FabricLoader.getInstance().isModLoaded("sodium-extra")
     );
 
     // Important method
@@ -34,9 +37,9 @@ public class DMCMixinPlugin implements IMixinConfigPlugin {
             }
         }
         if (apply) {
-            Log.info("Applying Mixin (" + mixinsClassName + ") to " + targetClassName + "!");
+            LOG.info("Applying Mixin ({}) to {}!", mixinsClassName, targetClassName);
         } else {
-            Log.info("Skipping Mixin (" + mixinsClassName + ")!");
+            LOG.info("Skipping Mixin ({})!", mixinsClassName);
         }
         return apply;
     }

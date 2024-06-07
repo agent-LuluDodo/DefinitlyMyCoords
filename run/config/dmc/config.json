@@ -1,1 +1,9 @@
-{"mode":"ABSOLUTE","offset-z":0,"obscure-rotations":false,"spoof-biome":false,"biome":{"namespace":"minecraft","path":"plains"},"offset-x":555,"offset-y":0}
+{
+  "mode": "CUSTOM",
+  "offset-x": 0,
+  "offset-y": 0,
+  "offset-z": 0,
+  "obscure-rotations": false,
+  "spoof-biome": false,
+  "biome": "minecraft:plains"
+}

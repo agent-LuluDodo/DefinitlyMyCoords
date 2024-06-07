@@ -10,6 +10,7 @@ import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldView;
 import net.minecraft.world.biome.Biome;
@@ -57,6 +58,9 @@ public class DMCApi {
             return z - RelativeF3Coords.getOldZ();
         }
         return z + ConfigAPI.getOffsetZ();
+    }
+    public static Vec3d getOffset(Vec3d pos) {
+        return new Vec3d(getOffsetX(pos.getX()), getOffsetY(pos.getY()), getOffsetZ(pos.getZ()));
     }
 
     public static boolean isCustom() {

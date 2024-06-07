@@ -7,20 +7,21 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.ChunkSectionPos;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
 
 @Mixin(DebugHud.class)
 public class F3MenuMixin {
     @ModifyArg(method = "getLeftText", at = @At(value = "INVOKE", target = "Ljava/lang/String;format(Ljava/util/Locale;Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;", ordinal = 3), index = 2)
-    public Object[] getXYZ(Object[] args) {
+    public Object[] definitelymycoords$getXYZ(Object[] args) {
         args[0] = DMCApi.getOffsetX((double) args[0]);
         args[1] = DMCApi.getOffsetY((double) args[1]);
         args[2] = DMCApi.getOffsetZ((double) args[2]);
         return args;
     }
     @ModifyArg(method = "getLeftText", at = @At(value = "INVOKE", target = "Ljava/lang/String;format(Ljava/util/Locale;Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;", ordinal = 4), index = 2)
-    public Object[] getBlockXYZ(Object[] args) {
+    public Object[] definitelymycoords$getBlockXYZ(Object[] args) {
         long x = DMCApi.getOffsetBlockX((int) args[0]);
         long y = DMCApi.getOffsetBlockY((int) args[1]);
         long z = DMCApi.getOffsetBlockZ((int) args[2]);
@@ -33,7 +34,7 @@ public class F3MenuMixin {
         return args;
     }
     @ModifyArg(method = "getLeftText", at = @At(value = "INVOKE", target = "Ljava/lang/String;format(Ljava/util/Locale;Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;", ordinal = 5), index = 2)
-    public Object[] getChunkXYZ(Object[] args) {
+    public Object[] definitelymycoords$getChunkXYZ(Object[] args) {
         BlockPos originalblockPos = MinecraftClient.getInstance().cameraEntity.getBlockPos();
         BlockPos blockPos = new BlockPos(
                 (int) DMCApi.getOffsetBlockX(originalblockPos.getX()),
@@ -53,17 +54,18 @@ public class F3MenuMixin {
 
     @SuppressWarnings("unchecked")
     @ModifyArg(method = "getRightText", at = @At(value = "INVOKE", target = "Ljava/util/List;add(Ljava/lang/Object;)Z", ordinal = 1), index = 0)
-    public<E> E addBlockHitXYZ(E original) {
-        return (E) offsetBlockHitString((String) original);
+    public<E> E definitelymycoords$addBlockHitXYZ(E original) {
+        return (E) definitelymycoords$offsetBlockHitString((String) original);
     }
 
     @SuppressWarnings("unchecked")
     @ModifyArg(method = "getRightText", at = @At(value = "INVOKE", target = "Ljava/util/List;add(Ljava/lang/Object;)Z", ordinal = 5), index = 0)
-    public<E> E addFluidHitXYZ(E original) {
-        return (E) offsetBlockHitString((String) original);
+    public<E> E definitelymycoords$addFluidHitXYZ(E original) {
+        return (E) definitelymycoords$offsetBlockHitString((String) original);
     }
 
-    private String offsetBlockHitString(String originalString) {
+    @Unique
+    private String definitelymycoords$offsetBlockHitString(String originalString) {
         int posStartIndex = originalString.lastIndexOf(':') + 2;
         if (posStartIndex == 1) { // -1 (<- no result) + 2
             return originalString;

@@ -9,6 +9,7 @@
     "betterf3.ChunksModuleMixin",
     "betterf3.CoordsModuleMixin",
     "betterf3.TargetModuleMixin",
+    "sodiumextra.HudRenderImplMixin",
     "vanilla.F3MenuMixin",
     "vanilla.ObscureRotationsMixin",
     "vanilla.WorldViewMixin",

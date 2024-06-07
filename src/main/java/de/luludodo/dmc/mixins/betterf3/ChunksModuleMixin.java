@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.injection.ModifyArg;
 @Mixin(ChunksModule.class)
 public class ChunksModuleMixin {
     @ModifyArg(method = "update", at = @At(value = "INVOKE", target = "Lnet/minecraft/util/math/ChunkPos;<init>(Lnet/minecraft/util/math/BlockPos;)V", ordinal = 0), index = 0)
-    public BlockPos getBlockPos(BlockPos original) {
+    public BlockPos definitelymycoords$getBlockPos(BlockPos original) {
         return new BlockPos(
                 (int) DMCApi.getOffsetBlockX(original.getX()),
                 (int) DMCApi.getOffsetBlockY(original.getY()),
