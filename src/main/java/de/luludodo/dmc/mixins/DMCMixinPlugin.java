@@ -1,7 +1,6 @@
 package de.luludodo.dmc.mixins;
 
 import com.google.common.collect.ImmutableMap;
-import de.luludodo.dmc.log.Log;
 import net.fabricmc.loader.api.FabricLoader;
 import org.objectweb.asm.tree.ClassNode;
 import org.slf4j.Logger;

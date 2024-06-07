@@ -27,13 +27,4 @@ public enum Mode implements TranslatableOption {
     public String getTranslationKey() {
         return translationKey;
     }
-
-    @Override
-    public String toString() {
-        return switch (this) {
-            case RELATIVE -> "relative";
-            case ABSOLUTE -> "absolute";
-            case CUSTOM -> "custom";
-        };
-    }
 }
