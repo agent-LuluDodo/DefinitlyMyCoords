@@ -80,7 +80,7 @@ public class DMCConfigScreen extends Screen {
         offsetZ = new TextFieldWidget(textRenderer, width / 2 - 76, height / 6 + 80, 176, 20, offsetZ, Text.translatable("options.dmc.offset-z"));
         offsetX.setChangedListener(offset -> {
             try {
-                if(mode.getValue() == Mode.ABSOLUTE) {
+                if (mode.getValue() == Mode.ABSOLUTE) {
                     ConfigAPI.setOffsetX(Integer.parseInt(offset.replaceAll("^$", "0")));
                 } else {
                     ConfigAPI.setOffsetX(Integer.parseInt(offset.replaceAll("^$", "0")) - client.cameraEntity.getBlockX());
@@ -89,7 +89,7 @@ public class DMCConfigScreen extends Screen {
         });
         offsetY.setChangedListener(offset -> {
             try {
-                if(mode.getValue() == Mode.ABSOLUTE) {
+                if (mode.getValue() == Mode.ABSOLUTE) {
                     ConfigAPI.setOffsetY(Integer.parseInt(offset.replaceAll("^$", "0")));
                 } else {
                     ConfigAPI.setOffsetY(Integer.parseInt(offset.replaceAll("^$", "0")) - client.cameraEntity.getBlockY());
@@ -98,7 +98,7 @@ public class DMCConfigScreen extends Screen {
         });
         offsetZ.setChangedListener(offset -> {
             try {
-                if(mode.getValue() == Mode.ABSOLUTE) {
+                if (mode.getValue() == Mode.ABSOLUTE) {
                     ConfigAPI.setOffsetZ(Integer.parseInt(offset.replaceAll("^$", "0")));
                 } else {
                     ConfigAPI.setOffsetZ(Integer.parseInt(offset.replaceAll("^$", "0")) - client.cameraEntity.getBlockZ());
@@ -108,7 +108,7 @@ public class DMCConfigScreen extends Screen {
         elements[1] = addDrawableChild(randomRotations.createWidget(settings, width / 2 - 100, height / 6 - 16, 200));
         elements[5] = addDrawableChild(ButtonWidget.builder(Text.of("i"), button -> infoMode = !infoMode).dimensions(width / 2 + 80, height / 6 + 8, 20, 20).build());
         Mode curMode = mode.getValue();
-        if (curMode != Mode.CUSTOM) {
+        if (curMode != Mode.CUSTOM && curMode != Mode.VANILLA) {
             if (curMode == Mode.RELATIVE) {
                 offsetX.setText(((ConfigAPI.getOffsetX() + client.cameraEntity.getBlockX()) + "").replaceAll("\\.0$", ""));
                 offsetY.setText(((ConfigAPI.getOffsetY() + client.cameraEntity.getBlockY()) + "").replaceAll("\\.0$", ""));
@@ -145,13 +145,13 @@ public class DMCConfigScreen extends Screen {
     }
 
     private void onModeChange(CyclingButtonWidget<Mode> widget, Mode mode) {
-        if (mode == Mode.CUSTOM) {
+        if (mode == Mode.CUSTOM || mode == Mode.VANILLA) {
             if (this.children().contains(offsetX)) {
                 remove(offsetX);
                 remove(offsetY);
                 remove(offsetZ);
             }
-            ConfigAPI.setMode(Mode.CUSTOM);
+            ConfigAPI.setMode(mode);
             return;
         } else {
             if (!this.children().contains(offsetX)) {
@@ -259,7 +259,7 @@ public class DMCConfigScreen extends Screen {
     @Override
     public void render(DrawContext drawContext, int mouseX, int mouseY, float delta) {
         drawContext.drawCenteredTextWithShadow(textRenderer, title, width / 2, 5, 0xFFFFFF);
-        if (mode.getValue() != Mode.CUSTOM) {
+        if (mode.getValue() != Mode.CUSTOM && mode.getValue() != Mode.VANILLA) {
             drawOffsetText(offsetX, "X", 38, drawContext);
             drawOffsetText(offsetY, "Y", 62, drawContext);
             drawOffsetText(offsetZ, "Z", 86, drawContext);

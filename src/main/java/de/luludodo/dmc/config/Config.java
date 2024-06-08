@@ -15,7 +15,7 @@ public class Config extends JsonMapConfig<String, Object> {
     @Override
     protected Map<String, Object> getDefaults() {
         return Map.of(
-                "mode", Mode.RELATIVE,
+                "mode", Mode.VANILLA,
                 "offset-x", 0L,
                 "offset-y", 0L,
                 "offset-z", 0L,
