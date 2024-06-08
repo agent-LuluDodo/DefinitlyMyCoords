@@ -28,6 +28,7 @@ A non-exhaustive list of compatible mods.
 ## Modes
 
 ### Vanilla
+[suggested by @JackyXYZGaming](https://github.com/agent-LuluDodo/DefinitelyMyCoords/issues/9)
 
 Doesn't modify your position at all.
 
