@@ -17,7 +17,7 @@ You can configure the settings key in the keybindings menu.
 ## Compatibility
 
 A non-exhaustive list of compatible mods.  
-These mods are neither made by me nor affiliated with me.
+*These mods are neither made by me nor affiliated with me.*
 
 - [BetterF3](https://modrinth.com/mod/betterf3)
 - [Xaero's World Map](https://modrinth.com/mod/xaeros-world-map)
