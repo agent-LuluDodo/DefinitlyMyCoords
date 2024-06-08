@@ -1,9 +1,10 @@
 package de.luludodo.dmc.keybinds;
 
+import de.luludodo.dmc.config.ConfigAPI;
 import de.luludodo.dmc.coords.DMCConfigScreen;
+import de.luludodo.dmc.coords.Mode;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
-import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.option.GameOptions;
 import net.minecraft.client.option.KeyBinding;
@@ -13,15 +14,27 @@ import org.lwjgl.glfw.GLFW;
 public class Keybindings {
     public static void register() {
         // KeyBindings
-        KeyBinding f5Keybinding = generate("config", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_F6);
+        KeyBinding configKeyBinding = generate("config", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_F6);
+        KeyBinding modeVanillaKeyBinding = generate("mode-vanilla", InputUtil.Type.KEYSYM, -1);
+        KeyBinding modeAbsoluteKeyBinding = generate("mode-absolute", InputUtil.Type.KEYSYM, -1);
+        KeyBinding modeRelativeKeyBinding = generate("mode-relative", InputUtil.Type.KEYSYM, -1);
+        KeyBinding modeCustomKeyBinding = generate("mode-custom", InputUtil.Type.KEYSYM, -1);
         // END KeyBindings
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             // Variables
-            MinecraftClient mcClient = MinecraftClient.getInstance();
-            Screen screen = mcClient.currentScreen;
-            GameOptions gameOptions = mcClient.options;
+            Screen screen = client.currentScreen;
+            GameOptions gameOptions = client.options;
             // Call Method
-            if(f5Keybinding.wasPressed()) client.setScreen(new DMCConfigScreen(screen, gameOptions));
+            if (configKeyBinding.wasPressed())
+                client.setScreen(new DMCConfigScreen(screen, gameOptions));
+            if (modeCustomKeyBinding.wasPressed())
+                ConfigAPI.setMode(Mode.CUSTOM);
+            if (modeRelativeKeyBinding.wasPressed())
+                ConfigAPI.setMode(Mode.RELATIVE);
+            if (modeAbsoluteKeyBinding.wasPressed())
+                ConfigAPI.setMode(Mode.ABSOLUTE);
+            if (modeVanillaKeyBinding.wasPressed())
+                ConfigAPI.setMode(Mode.VANILLA);
             // END Call Method
         });
     }
