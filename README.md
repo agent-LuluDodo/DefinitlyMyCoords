@@ -23,8 +23,13 @@ These mods are neither made by me nor affiliated with me.
 - [Xaero's World Map](https://modrinth.com/mod/xaeros-world-map)
 - [Xaero's Minimap](https://modrinth.com/mod/xaeros-minimap)
 - [Xaero's Minimap (Fair-Play)](https://modrinth.com/mod/xaeros-minimap-fair)
+- [Sodium Extra](https://modrinth.com/mod/sodium-extra)
 
 ## Modes
+
+### Vanilla
+
+Doesn't modify your position at all.
 
 ### Relative
 
