@@ -275,7 +275,7 @@ public class ConfigScreen extends Screen {
     }
 
     private void infoMode(MatrixStack matrices, int mouseX, int mouseY, float delta) {
-        Optional<Element> optionalHoveredElement= this.hoveredElement(mouseX, mouseY);
+        Optional<Element> optionalHoveredElement = this.hoveredElement(mouseX, mouseY);
         if (optionalHoveredElement.isPresent()) {
             Element hoveredElement = optionalHoveredElement.get();
             int index = -1;
