@@ -2,7 +2,7 @@ package de.luludodo.dmc.config;
 
 import de.luludodo.dmc.api.config.JsonMapConfig;
 import de.luludodo.dmc.config.serializer.ConfigSerializer;
-import de.luludodo.dmc.coords.Mode;
+import de.luludodo.dmc.modes.Mode;
 import net.minecraft.util.Identifier;
 
 import java.util.Map;

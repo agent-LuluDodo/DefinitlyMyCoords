@@ -1,8 +1,7 @@
-package de.luludodo.dmc;
+package de.luludodo.dmc.modes.custom;
 
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gui.screen.ingame.InventoryScreen;
 import net.minecraft.entity.Entity;
 
 public class RelativeF3Coords {
