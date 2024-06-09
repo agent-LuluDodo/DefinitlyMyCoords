@@ -285,11 +285,11 @@ public class ConfigScreen extends Screen {
             switch (index) {
                 case 0 -> renderTooltip(matrices, "mode-" + mode.getValue().toString().toLowerCase(), mouseX, mouseY);
                 case 1 -> renderTooltip(matrices, "obscure-rotations", mouseX, mouseY);
-                case 2 -> renderTooltip(matrices, "offset-x", width / 2 + 95, mouseY);
-                case 3 -> renderTooltip(matrices, "offset-y", width / 2 + 95, mouseY);
-                case 4 -> renderTooltip(matrices, "offset-z", width / 2 + 95, mouseY);
+                case 2 -> renderTooltip(matrices, "offset-x", mouseX, mouseY);
+                case 3 -> renderTooltip(matrices, "offset-y", mouseX, mouseY);
+                case 4 -> renderTooltip(matrices, "offset-z", mouseX, mouseY);
                 case 5 -> renderTooltip(matrices, "info-mode", mouseX, mouseY);
-                case 6 -> renderTooltip(matrices, "biome", width / 2 + 95, mouseY);
+                case 6 -> renderTooltip(matrices, "biome", mouseX, mouseY);
                 case 7 -> renderTooltip(matrices, "save", mouseX, mouseY);
                 case 8 -> renderTooltip(matrices, "cancel", mouseX, mouseY);
             }
