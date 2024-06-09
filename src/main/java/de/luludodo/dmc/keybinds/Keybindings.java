@@ -1,11 +1,10 @@
 package de.luludodo.dmc.keybinds;
 
 import de.luludodo.dmc.config.ConfigAPI;
-import de.luludodo.dmc.coords.DMCConfigScreen;
-import de.luludodo.dmc.coords.Mode;
+import de.luludodo.dmc.gui.ConfigScreen;
+import de.luludodo.dmc.modes.Mode;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
-import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.option.GameOptions;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.InputUtil;
@@ -22,11 +21,10 @@ public class Keybindings {
         // END KeyBindings
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             // Variables
-            Screen screen = client.currentScreen;
             GameOptions gameOptions = client.options;
             // Call Method
             if (configKeyBinding.wasPressed())
-                client.setScreen(new DMCConfigScreen(screen, gameOptions));
+                client.setScreen(new ConfigScreen(gameOptions));
             if (modeCustomKeyBinding.wasPressed())
                 ConfigAPI.setMode(Mode.CUSTOM);
             if (modeRelativeKeyBinding.wasPressed())
