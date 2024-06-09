@@ -281,7 +281,7 @@ public class ConfigScreen extends Screen {
     public void renderBackground(DrawContext context, int mouseX, int mouseY, float delta) {}
 
     private void infoMode(DrawContext context, int mouseX, int mouseY, float delta) {
-        Optional<Element> optionalHoveredElement= this.hoveredElement(mouseX, mouseY);
+        Optional<Element> optionalHoveredElement = this.hoveredElement(mouseX, mouseY);
         if (optionalHoveredElement.isPresent()) {
             Element hoveredElement = optionalHoveredElement.get();
             int index = -1;
