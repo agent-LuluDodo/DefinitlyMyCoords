@@ -262,7 +262,7 @@ public class ConfigScreen extends Screen {
         context.getMatrices().push();
         context.getMatrices().translate(0, 0, -1000);
         super.renderBackground(context, mouseX, mouseY, delta);
-        MinecraftClient.getInstance().getDebugHud().render(context);
+        client.getDebugHud().render(context);
         context.getMatrices().pop();
 
         super.render(context, mouseX, mouseY, delta);
