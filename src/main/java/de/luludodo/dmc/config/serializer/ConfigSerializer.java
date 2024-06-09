@@ -2,7 +2,7 @@ package de.luludodo.dmc.config.serializer;
 
 import com.google.gson.*;
 import de.luludodo.dmc.api.config.serializer.MapSerializer;
-import de.luludodo.dmc.coords.Mode;
+import de.luludodo.dmc.modes.Mode;
 import net.minecraft.util.Identifier;
 
 import java.lang.reflect.Type;

@@ -17,12 +17,13 @@
   "environment": "client",
   "entrypoints": {
     "client": [
-      "de.luludodo.dmc.client.DefinitelyMyCoordsClient"
+      "de.luludodo.dmc.DefinitelyMyCoords"
     ]
   },
   "mixins": [
     "dmc.mixins.json"
   ],
+  "accessWidener": "dmc.accesswidener",
   "depends": {
     "fabricloader": ">=${loader_version}",
     "fabric": "*",
