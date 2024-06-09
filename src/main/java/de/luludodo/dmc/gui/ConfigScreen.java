@@ -1,7 +1,8 @@
-package de.luludodo.dmc.coords;
+package de.luludodo.dmc.gui;
 
 import de.luludodo.dmc.api.DMCApi;
 import de.luludodo.dmc.config.ConfigAPI;
+import de.luludodo.dmc.modes.Mode;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
@@ -19,7 +20,7 @@ import net.minecraft.util.Identifier;
 import java.util.Optional;
 
 @Environment(value=EnvType.CLIENT)
-public class DMCConfigScreen extends Screen {
+public class ConfigScreen extends Screen {
     private final GameOptions settings;
 
     private CyclingButtonWidget<Mode> mode;
@@ -40,7 +41,7 @@ public class DMCConfigScreen extends Screen {
     private Identifier oldBiome;
     private boolean oldDebugEnabled;
 
-    public DMCConfigScreen(Screen parent, GameOptions gameOptions) {
+    public ConfigScreen(GameOptions gameOptions) {
         super(Text.translatable("options.dmc.title"));
         this.settings = gameOptions;
     }
@@ -54,7 +55,7 @@ public class DMCConfigScreen extends Screen {
         oldSpoofBiome = ConfigAPI.getSpoofBiome();
         oldBiome = ConfigAPI.getBiome();
         oldDebugEnabled = client.getDebugHud().shouldShowDebugHud();
-        if (!oldDebugEnabled) {
+        if (oldDebugEnabled) {
             client.getDebugHud().toggleDebugHud();
         }
         randomRotations = SimpleOption.ofBoolean("options.dmc.random-rotations", ConfigAPI.getObscureRotations(), value -> {
@@ -151,7 +152,7 @@ public class DMCConfigScreen extends Screen {
                 remove(offsetY);
                 remove(offsetZ);
             }
-            ConfigAPI.setMode(Mode.CUSTOM);
+            ConfigAPI.setMode(mode);
             return;
         } else {
             if (!this.children().contains(offsetX)) {
@@ -215,7 +216,7 @@ public class DMCConfigScreen extends Screen {
     }
 
     public void close() {
-        if (oldDebugEnabled ^ client.getDebugHud().shouldShowDebugHud()) {
+        if (oldDebugEnabled != client.getDebugHud().shouldShowDebugHud()) {
             client.getDebugHud().toggleDebugHud();
         }
         client.worldRenderer.reload();
@@ -257,19 +258,29 @@ public class DMCConfigScreen extends Screen {
     }
 
     @Override
-    public void render(DrawContext drawContext, int mouseX, int mouseY, float delta) {
-        drawContext.drawCenteredTextWithShadow(textRenderer, title, width / 2, 5, 0xFFFFFF);
+    public void render(DrawContext context, int mouseX, int mouseY, float delta) {
+        context.getMatrices().push();
+        context.getMatrices().translate(0, 0, -1000);
+        super.renderBackground(context, mouseX, mouseY, delta);
+        MinecraftClient.getInstance().getDebugHud().render(context);
+        context.getMatrices().pop();
+
+        super.render(context, mouseX, mouseY, delta);
+
+        context.drawCenteredTextWithShadow(textRenderer, title, width / 2, 5, 0xFFFFFF);
         if (mode.getValue() != Mode.CUSTOM && mode.getValue() != Mode.VANILLA) {
-            drawOffsetText(offsetX, "X", 38, drawContext);
-            drawOffsetText(offsetY, "Y", 62, drawContext);
-            drawOffsetText(offsetZ, "Z", 86, drawContext);
+            drawOffsetText(context, offsetX, "X", 38);
+            drawOffsetText(context, offsetY, "Y", 62);
+            drawOffsetText(context, offsetZ, "Z", 86);
         }
-        drawBiomeText((TextFieldWidget) elements[6], drawContext);
-        if (infoMode) infoMode(drawContext, mouseX, mouseY, delta);
-        super.render(drawContext, mouseX, mouseY, delta);
+        drawBiomeText(context, (TextFieldWidget) elements[6]);
+        if (infoMode) infoMode(context, mouseX, mouseY, delta);
     }
 
-    private void infoMode(DrawContext drawContext, int mouseX, int mouseY, float delta) {
+    @Override
+    public void renderBackground(DrawContext context, int mouseX, int mouseY, float delta) {}
+
+    private void infoMode(DrawContext context, int mouseX, int mouseY, float delta) {
         Optional<Element> optionalHoveredElement= this.hoveredElement(mouseX, mouseY);
         if (optionalHoveredElement.isPresent()) {
             Element hoveredElement = optionalHoveredElement.get();
@@ -278,32 +289,32 @@ public class DMCConfigScreen extends Screen {
                 if (elements[i] != null&&elements[i].equals(hoveredElement)) index = i;
             }
             switch (index) {
-                case 0 -> renderTooltip(drawContext, "mode-" + mode.getValue().toString(), mouseX, mouseY);
-                case 1 -> renderTooltip(drawContext, "obscure-rotations", mouseX, mouseY);
-                case 2 -> renderTooltip(drawContext, "offset-x", width / 2 + 95, mouseY);
-                case 3 -> renderTooltip(drawContext, "offset-y", width / 2 + 95, mouseY);
-                case 4 -> renderTooltip(drawContext, "offset-z", width / 2 + 95, mouseY);
-                case 5 -> renderTooltip(drawContext, "info-mode", mouseX, mouseY);
-                case 6 -> renderTooltip(drawContext, "biome", width / 2 + 95, mouseY);
-                case 7 -> renderTooltip(drawContext, "save", mouseX, mouseY);
-                case 8 -> renderTooltip(drawContext, "cancel", mouseX, mouseY);
+                case 0 -> renderTooltip(context, "mode-" + mode.getValue().toString().toLowerCase(), mouseX, mouseY);
+                case 1 -> renderTooltip(context, "obscure-rotations", mouseX, mouseY);
+                case 2 -> renderTooltip(context, "offset-x", mouseX, mouseY);
+                case 3 -> renderTooltip(context, "offset-y", mouseX, mouseY);
+                case 4 -> renderTooltip(context, "offset-z", mouseX, mouseY);
+                case 5 -> renderTooltip(context, "info-mode", mouseX, mouseY);
+                case 6 -> renderTooltip(context, "biome", mouseX, mouseY);
+                case 7 -> renderTooltip(context, "save", mouseX, mouseY);
+                case 8 -> renderTooltip(context, "cancel", mouseX, mouseY);
             }
         }
     }
 
-    private void renderTooltip(DrawContext drawContext, String name, int x, int y) {
-        drawContext.drawTooltip(textRenderer, Text.translatable("tooltip.dmc." + name), x, y);
+    private void renderTooltip(DrawContext context, String name, int x, int y) {
+        context.drawTooltip(textRenderer, Text.translatable("tooltip.dmc." + name), x, y);
     }
 
-    private void drawOffsetText(TextFieldWidget offset, String name, int heightOffset, DrawContext drawContext) {
+    private void drawOffsetText(DrawContext context, TextFieldWidget offset, String name, int heightOffset) {
         int valid = validNumber(offset.getText());
         int color = valid == 0? 0xFFFFFF: valid == 1? 0x00FF00: 0xFF0000;
-        drawContext.drawCenteredTextWithShadow(textRenderer, name, width / 2 - 88, height / 6 + heightOffset, color);
+        context.drawCenteredTextWithShadow(textRenderer, name, width / 2 - 88, height / 6 + heightOffset, color);
     }
 
-    private void drawBiomeText(TextFieldWidget biome, DrawContext drawContext) {
+    private void drawBiomeText(DrawContext context, TextFieldWidget biome) {
         int valid = validBiome(client, biome.getText());
         int color = valid == 0? 0xFFFFFF: valid == 1? 0x00FF00: 0xFF0000;
-        drawContext.drawCenteredTextWithShadow(textRenderer, "Biome", width / 2 - 80, height / 6 + 126, color);
+        context.drawCenteredTextWithShadow(textRenderer, "Biome", width / 2 - 80, height / 6 + 126, color);
     }
 }

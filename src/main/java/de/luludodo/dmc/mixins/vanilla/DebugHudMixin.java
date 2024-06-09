@@ -1,7 +1,6 @@
 package de.luludodo.dmc.mixins.vanilla;
 
 import de.luludodo.dmc.api.DMCApi;
-import de.luludodo.dmc.client.DefinitelyMyCoordsClient;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.hud.DebugHud;
 import net.minecraft.util.math.BlockPos;
@@ -13,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
 
 @Mixin(DebugHud.class)
-public class F3MenuMixin {
+public class DebugHudMixin {
     @ModifyArg(method = "getLeftText", at = @At(value = "INVOKE", target = "Ljava/lang/String;format(Ljava/util/Locale;Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;", ordinal = 4), index = 2)
     public Object[] definitelymycoords$getXYZ(Object[] args) {
         args[0] = DMCApi.getOffsetX((double) args[0]);

@@ -10,7 +10,7 @@
     "betterf3.CoordsModuleMixin",
     "betterf3.TargetModuleMixin",
     "sodiumextra.SodiumExtraHudMixin",
-    "vanilla.F3MenuMixin",
+    "vanilla.DebugHudMixin",
     "vanilla.ObscureRotationsMixin",
     "vanilla.WorldViewMixin",
     "xaerominimap.InfoDisplayMixin",

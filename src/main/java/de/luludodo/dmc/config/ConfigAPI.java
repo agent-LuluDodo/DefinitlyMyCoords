@@ -1,63 +1,63 @@
 package de.luludodo.dmc.config;
 
-import de.luludodo.dmc.client.DefinitelyMyCoordsClient;
-import de.luludodo.dmc.coords.Mode;
+import de.luludodo.dmc.DefinitelyMyCoords;
+import de.luludodo.dmc.modes.Mode;
 import net.minecraft.util.Identifier;
 
 public class ConfigAPI {
     public static Mode getMode() {
-        return (Mode) DefinitelyMyCoordsClient.config.get("mode");
+        return (Mode) DefinitelyMyCoords.CONFIG.get("mode");
     }
 
     public static long getOffsetX() {
-        return (long) DefinitelyMyCoordsClient.config.get("offset-x");
+        return (long) DefinitelyMyCoords.CONFIG.get("offset-x");
     }
 
     public static long getOffsetY() {
-        return (long) DefinitelyMyCoordsClient.config.get("offset-y");
+        return (long) DefinitelyMyCoords.CONFIG.get("offset-y");
     }
 
     public static long getOffsetZ() {
-        return (long) DefinitelyMyCoordsClient.config.get("offset-z");
+        return (long) DefinitelyMyCoords.CONFIG.get("offset-z");
     }
 
     public static boolean getObscureRotations() {
-        return (boolean) DefinitelyMyCoordsClient.config.get("obscure-rotations");
+        return (boolean) DefinitelyMyCoords.CONFIG.get("obscure-rotations");
     }
 
     public static boolean getSpoofBiome() {
-        return (boolean) DefinitelyMyCoordsClient.config.get("spoof-biome");
+        return (boolean) DefinitelyMyCoords.CONFIG.get("spoof-biome");
     }
 
     public static Identifier getBiome() {
-        return (Identifier) DefinitelyMyCoordsClient.config.get("biome");
+        return (Identifier) DefinitelyMyCoords.CONFIG.get("biome");
     }
 
     public static void setMode(Mode mode) {
-        DefinitelyMyCoordsClient.config.set("mode", mode);
+        DefinitelyMyCoords.CONFIG.set("mode", mode);
     }
 
     public static void setOffsetX(long offsetX) {
-        DefinitelyMyCoordsClient.config.set("offset-x", offsetX);
+        DefinitelyMyCoords.CONFIG.set("offset-x", offsetX);
     }
 
     public static void setOffsetY(long offsetY) {
-        DefinitelyMyCoordsClient.config.set("offset-y", offsetY);
+        DefinitelyMyCoords.CONFIG.set("offset-y", offsetY);
     }
 
     public static void setOffsetZ(long offsetZ) {
-        DefinitelyMyCoordsClient.config.set("offset-z", offsetZ);
+        DefinitelyMyCoords.CONFIG.set("offset-z", offsetZ);
     }
 
     public static void setObscureRotations(boolean obscureRotations) {
-        DefinitelyMyCoordsClient.config.set("obscure-rotations", obscureRotations);
+        DefinitelyMyCoords.CONFIG.set("obscure-rotations", obscureRotations);
     }
 
     public static void setSpoofBiome(boolean spoofBiome) {
-        DefinitelyMyCoordsClient.config.set("spoof-biome", spoofBiome);
+        DefinitelyMyCoords.CONFIG.set("spoof-biome", spoofBiome);
     }
 
     public static void setBiome(Identifier biome) {
-        DefinitelyMyCoordsClient.config.set("biome", biome);
+        DefinitelyMyCoords.CONFIG.set("biome", biome);
     }
 }

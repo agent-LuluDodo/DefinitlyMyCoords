@@ -1,8 +1,8 @@
 package de.luludodo.dmc.api;
 
-import de.luludodo.dmc.RelativeF3Coords;
+import de.luludodo.dmc.modes.custom.RelativeF3Coords;
 import de.luludodo.dmc.config.ConfigAPI;
-import de.luludodo.dmc.coords.Mode;
+import de.luludodo.dmc.modes.Mode;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
