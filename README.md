@@ -1,6 +1,6 @@
 ## Download on [Modrinth](https://modrinth.com/mod/definitelymycoords)!  
-![Settings Menu](https://cdn.modrinth.com/data/M4Fyp5vW/images/01d7761e5ae7ef0ea2f50b00b947c29b81148703.png)
-DefinitelyMyCoords helps you hide your coordinates on the F3 screen with 3 different modes.
+![Settings Menu](https://cdn.modrinth.com/data/M4Fyp5vW/images/3f356d1fdba6cc8c87533c3f349fc079b22358ea.png)
+DefinitelyMyCoords helps you hide your coordinates on the F3 screen with 3 different modes.`
 
 # Why do I want this mod?
 
