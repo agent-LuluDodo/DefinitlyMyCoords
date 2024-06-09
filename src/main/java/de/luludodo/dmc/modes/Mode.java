@@ -1,4 +1,4 @@
-package de.luludodo.dmc.coords;
+package de.luludodo.dmc.modes;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
