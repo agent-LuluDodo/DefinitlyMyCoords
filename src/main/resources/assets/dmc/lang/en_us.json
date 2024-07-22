@@ -31,5 +31,6 @@
   "tooltip.dmc.redo-rotations": "Changes the modifier for random rotations.",
   "tooltip.dmc.save": "Saves all changes made.",
   "tooltip.dmc.cancel": "Discards all changes made.",
-  "tooltip.dmc.biome": "If empty does nothing. Otherwise spoofs biome to entered value."
+  "tooltip.dmc.biome": "If empty does nothing. Otherwise spoofs biome to entered value.",
+  "offset.on-error": "Hidden"
 }

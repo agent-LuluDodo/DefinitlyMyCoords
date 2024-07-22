@@ -3,6 +3,7 @@ package de.luludodo.dmc.mixins.vanilla;
 import de.luludodo.dmc.api.DMCApi;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.hud.DebugHud;
+import net.minecraft.text.Text;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.ChunkSectionPos;
@@ -68,19 +69,19 @@ public class DebugHudMixin {
     private String definitelymycoords$offsetBlockHitString(String originalString) {
         int posStartIndex = originalString.lastIndexOf(':') + 2;
         if (posStartIndex == 1) { // -1 (<- no result) + 2
-            return originalString;
+            return Text.translatable("offset.on-error").getString();
         }
         String[] blockPosStrings = originalString.substring(posStartIndex).split(", ");
         if (blockPosStrings.length != 3) {
-            return originalString;
+            return Text.translatable("offset.on-error").getString();
         }
         try {
-            return originalString.substring(0, posStartIndex + 1) +
+            return originalString.substring(0, posStartIndex) +
                     DMCApi.getOffsetBlockX(Integer.parseInt(blockPosStrings[0])) + ", " +
                     DMCApi.getOffsetBlockY(Integer.parseInt(blockPosStrings[1])) + ", " +
                     DMCApi.getOffsetBlockZ(Integer.parseInt(blockPosStrings[2]));
         } catch (NumberFormatException ignored) {
-            return originalString;
+            return Text.translatable("offset.on-error").getString();
         }
     }
 }
