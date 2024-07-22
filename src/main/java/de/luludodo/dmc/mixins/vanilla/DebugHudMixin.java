@@ -70,12 +70,10 @@ public class DebugHudMixin {
     private String definitelymycoords$offsetBlockHitString(String originalString) {
         int posStartIndex = originalString.lastIndexOf(':') + 2;
         if (posStartIndex == 1) { // -1 (<- no result) + 2
-            DefinitelyMyCoords.DEBUG.info("Invalid posStartIndex | Expected: 0 | Got: {}", posStartIndex);
             return Text.translatable("offset.on-error").getString();
         }
         String[] blockPosStrings = originalString.substring(posStartIndex).split(", ");
         if (blockPosStrings.length != 3) {
-            DefinitelyMyCoords.DEBUG.info("Invalid blockPosStrings.length | Expected: 3 | Got: {}", blockPosStrings.length);
             return Text.translatable("offset.on-error").getString();
         }
         try {
@@ -84,7 +82,6 @@ public class DebugHudMixin {
                     DMCApi.getOffsetBlockY(Integer.parseInt(blockPosStrings[1])) + ", " +
                     DMCApi.getOffsetBlockZ(Integer.parseInt(blockPosStrings[2]));
         } catch (NumberFormatException ignored) {
-            DefinitelyMyCoords.DEBUG.info("NumberFormatException", ignored);
             return Text.translatable("offset.on-error").getString();
         }
     }
