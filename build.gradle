@@ -44,7 +44,7 @@ dependencies {
 
     /* BetterF3 */
     modCompileOnly "maven.modrinth:betterf3:${project.betterf3_version}"
-    modRuntimeOnly "maven.modrinth:betterf3:${project.betterf3_version}"
+    //modRuntimeOnly "maven.modrinth:betterf3:${project.betterf3_version}"
 
     /* Xaero's World Map */
     modCompileOnly "maven.modrinth:xaeros-world-map:${project.xaeroworldmap_version}"
