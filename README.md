@@ -1,12 +1,12 @@
 ## Download on [Modrinth](https://modrinth.com/mod/definitelymycoords)!  
 ![Settings Menu](https://cdn.modrinth.com/data/M4Fyp5vW/images/3f356d1fdba6cc8c87533c3f349fc079b22358ea.png)
-DefinitelyMyCoords helps you hide your coordinates on the F3 screen with 3 different modes.`
+DefinitelyMyCoords helps you hide your coordinates on the F3 screen with 4 different modes.
 
 # Why do I want this mod?
 
-If you're a streamer or share your screen with somebody, 
-this mod could save you from leaking your coordinates. 
-While still being able to use F3 to measure distances, 
+If you're a streamer or share your screen with somebody,
+this mod could save you from leaking your coordinates.
+While still being able to use F3 to measure distances,
 check the direction you are facing, etc.
 
 ## Usage
@@ -34,9 +34,13 @@ Doesn't modify your position at all.
 
 ### Relative
 
+**TLTR**: Changes your coords
+
 The coordinates you enter are relative to your current positions. That means if you are standing at 100 60 -30 and enter -10 5 20 your current coordinates will be -10 5 20 and 0 0 0 will have turned into -110 -55 50.
 
 ### Absolute
+
+**TLTR**: Changes 0 0 0
 
 The coordinates you enter are relative to 0 0 0. In this case, if you are standing at 100 60 -30 and enter -10 5 20 your current coordinates will turn into 90 65 -10 and 0 0 0 will be -10 5 20.
 
