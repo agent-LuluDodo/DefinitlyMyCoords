@@ -6,6 +6,7 @@ import de.luludodo.dmc.modes.Mode;
 import net.minecraft.util.Identifier;
 
 import java.util.Map;
+import java.util.Objects;
 
 public class Config extends JsonMapConfig<String, Object> {
     public Config() {
@@ -21,7 +22,7 @@ public class Config extends JsonMapConfig<String, Object> {
                 "offset-z", 0L,
                 "obscure-rotations", false,
                 "spoof-biome", false,
-                "biome", new Identifier("minecraft", "plains")
+                "biome", Objects.requireNonNull(Identifier.of("minecraft", "plains"))
         );
     }
 }
