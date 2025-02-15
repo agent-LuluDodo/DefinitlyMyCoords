@@ -10,7 +10,7 @@ body:
       label: The mods
       description: List all mods you want me to add compatibility for here.
     validations:
-      requiered: true
+      required: true
   - type: textarea
     id: additional
     attributes:
