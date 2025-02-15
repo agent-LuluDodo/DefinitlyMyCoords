@@ -1,6 +1,6 @@
 name: Compatibility request
 description: Report an incompatibility with another mod
-title: '[Compatiblity] '
+title: '[Compatibility] '
 labels:
   - enhancement
 body:
