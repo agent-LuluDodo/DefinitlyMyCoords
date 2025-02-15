@@ -1,5 +1,5 @@
 name: Compatiblity request
-description: Report a imcompatibility with another mod
+description: Report an imcompatibility with another mod
 title: '[Compatiblity] '
 labels:
   - enhancement
