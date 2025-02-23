@@ -1,0 +1,40 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "de.luludodo.definitelymycoords.mixins",
+  "compatibilityLevel": "JAVA_17",
+  "client": [
+    "betterf3.ChunksModuleMixin",
+    "betterf3.CoordsModuleMixin",
+    "betterf3.TargetModuleMixin",
+    "litematica.GuiAreaSelectionEditorNormalMixin",
+    "litematica.GuiPlacementConfigurationMixin",
+    "litematica.GuiPlacementConfigurationTextFieldListenerMixin",
+    "litematica.KeyCallbackToggleMessageMixin",
+    "litematica.SchematicPlacementManagerMixin",
+    "litematica.SelectionManagerMixin",
+    "litematica.TaskBaseMixin",
+    "litematica.ToolHudMixin",
+    "litematica.WidgetAreaSelectionEntryMixin",
+    "litematica.WidgetSchematicPlacementMixin",
+    "litematica.WidgetSelectionSubRegionMixin",
+    "malilib.GuiBaseAccessor",
+    "malilib.GuiRenderLayerEditBaseAccessor",
+    "malilib.GuiRenderLayerEditBaseButtonListenerLayerEditMixin",
+    "malilib.GuiRenderLayerEditBaseMixin",
+    "malilib.GuiRenderLayerEditBaseMixinTextFieldListener",
+    "malilib.LayerRangeMixin",
+    "sodiumextra.SodiumExtraHudMixin",
+    "vanilla.DebugHudMixin",
+    "vanilla.ObscureRotationsMixin",
+    "vanilla.WorldViewMixin",
+    "xaerominimap.InfoDisplayMixin",
+    "xaeroworldmap.GuiMapMixin",
+    "xaeroworldmap.PlayerTrackerMapElementReaderMixin",
+    "xaeroworldmap.WaypointReaderMixin"
+  ],
+  "plugin": "de.luludodo.definitelymycoords.mixins.DMCMixinPlugin",
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
