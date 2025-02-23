@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "id": "dmc",
+  "id": "definitelymycoords",
   "version": "${version}",
   "name": "Definitely My Coords",
   "description": "A Mod to modify the coordinates shown on the f3 screen.",
@@ -11,15 +11,15 @@
     "homepage": "https://modrinth.com/mod/definitlymycoords"
   },
   "license": "MIT",
-  "icon": "assets/dmc/icon.png",
+  "icon": "assets/definitelymycoords/icon.png",
   "environment": "client",
   "entrypoints": {
     "client": [
-      "de.luludodo.dmc.DefinitelyMyCoords"
+      "de.luludodo.definitelymycoords.DefinitelyMyCoords"
     ]
   },
   "mixins": [
-    "dmc.mixins.json"
+    "definitelymycoords.mixins.json"
   ],
   "depends": {
     "fabricloader": ">=${loader_version}",
