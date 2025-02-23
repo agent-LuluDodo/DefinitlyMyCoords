@@ -1,3 +1,5 @@
+# [Download on Modrinth](https://modrinth.com/mod/definitelymycoords)
+
 ![Settings Menu](https://cdn.modrinth.com/data/M4Fyp5vW/images/17028ecc7d8a75f284d50cbaf7ee1ce5f6d22273.png)
 DefinitelyMyCoords helps you hide your coordinates on the F3 screen with 4 different modes.
 
