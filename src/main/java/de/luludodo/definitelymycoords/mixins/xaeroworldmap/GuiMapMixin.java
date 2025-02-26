@@ -21,7 +21,8 @@ public class GuiMapMixin {
                     value = "INVOKE",
                     target = "Lxaero/map/graphics/MapRenderHelper;drawCenteredStringWithBackground(Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/font/TextRenderer;Ljava/lang/String;IIIFFFFLnet/minecraft/client/render/VertexConsumer;)V",
                     ordinal = 0
-            )
+            ),
+            remap = true
     )
     public void definitelymycoords$topCoords(MatrixStack matrixStack, TextRenderer font, String string, int x, int y, int color, float bgRed, float bgGreen, float bgBlue, float bgAlpha, VertexConsumer backgroundVertexBuffer) {
         String[] parts = string.split(" ");

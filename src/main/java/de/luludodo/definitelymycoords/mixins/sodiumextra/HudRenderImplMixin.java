@@ -15,7 +15,8 @@ public class HudRenderImplMixin {
             at = @At(
                     value = "INVOKE",
                     target = "Lnet/minecraft/client/network/ClientPlayerEntity;getPos()Lnet/minecraft/util/math/Vec3d;",
-                    ordinal = 0
+                    ordinal = 0,
+                    remap = true
             )
     )
     private Vec3d definitelymycoords$getPos(ClientPlayerEntity instance) {
