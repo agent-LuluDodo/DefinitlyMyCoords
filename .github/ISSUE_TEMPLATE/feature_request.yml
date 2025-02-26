@@ -1,6 +1,6 @@
 name: Feature request
 description: Suggest an idea for this mod
-title: '[Feature] '
+title: '[Feature] <title>'
 labels:
   - enhancement
 body:
