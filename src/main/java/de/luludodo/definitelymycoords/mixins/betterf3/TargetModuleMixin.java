@@ -9,12 +9,28 @@ import org.spongepowered.asm.mixin.injection.ModifyArg;
 
 @Mixin(value = TargetModule.class, remap = false)
 public class TargetModuleMixin {
-    @ModifyArg(method = "update", at = @At(value = "INVOKE", target = "Lme/cominixo/betterf3/utils/DebugLine;value(Ljava/lang/Object;)V", ordinal = 0), index = 0)
+    @ModifyArg(
+            method = "update",
+            at = @At(
+                    value = "INVOKE",
+                    target = "Lme/cominixo/betterf3/utils/DebugLine;value(Ljava/lang/Object;)V",
+                    ordinal = 0
+            ),
+            index = 0
+    )
     public Object definitelymycoords$getBlockHitXYZ(Object original) {
         return definitelymycoords$offsetBlockHitString((String) original);
     }
 
-    @ModifyArg(method = "update", at = @At(value = "INVOKE", target = "Lme/cominixo/betterf3/utils/DebugLine;value(Ljava/lang/Object;)V", ordinal = 2), index = 0)
+    @ModifyArg(
+            method = "update",
+            at = @At(
+                    value = "INVOKE",
+                    target = "Lme/cominixo/betterf3/utils/DebugLine;value(Ljava/lang/Object;)V",
+                    ordinal = 2
+            ),
+            index = 0
+    )
     public Object definitelymycoords$getFluidHitXYZ(Object original) {
         return definitelymycoords$offsetBlockHitString((String) original);
     }

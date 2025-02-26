@@ -29,6 +29,7 @@
     "vanilla.ObscureRotationsMixin",
     "vanilla.WorldViewMixin",
     "xaerominimap.InfoDisplayMixin",
+    "old_xaerominimap.InfoDisplayMixin",
     "xaeroworldmap.GuiMapMixin",
     "xaeroworldmap.PlayerTrackerMapElementReaderMixin",
     "xaeroworldmap.WaypointReaderMixin"

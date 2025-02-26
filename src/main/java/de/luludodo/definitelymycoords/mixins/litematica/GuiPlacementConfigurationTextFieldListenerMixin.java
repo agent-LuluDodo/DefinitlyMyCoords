@@ -13,7 +13,8 @@ public class GuiPlacementConfigurationTextFieldListenerMixin {
             at = @At(
                     value = "INVOKE",
                     target = "Lnet/minecraft/util/math/BlockPos;<init>(III)V",
-                    ordinal = 0
+                    ordinal = 0,
+                    remap = true
             ),
             index = 0
     )
@@ -26,7 +27,8 @@ public class GuiPlacementConfigurationTextFieldListenerMixin {
             at = @At(
                     value = "INVOKE",
                     target = "Lnet/minecraft/util/math/BlockPos;<init>(III)V",
-                    ordinal = 1
+                    ordinal = 1,
+                    remap = true
             ),
             index = 1
     )
@@ -39,7 +41,8 @@ public class GuiPlacementConfigurationTextFieldListenerMixin {
             at = @At(
                     value = "INVOKE",
                     target = "Lnet/minecraft/util/math/BlockPos;<init>(III)V",
-                    ordinal = 2
+                    ordinal = 2,
+                    remap = true
             ),
             index = 2
     )
