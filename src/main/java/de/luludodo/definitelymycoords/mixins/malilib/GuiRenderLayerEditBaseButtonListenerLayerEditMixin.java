@@ -21,7 +21,8 @@ public class GuiRenderLayerEditBaseButtonListenerLayerEditMixin {
             at = @At(
                     value = "INVOKE",
                     target = "Lfi/dy/masa/malilib/util/LayerRange;setAxis(Lnet/minecraft/util/math/Direction$Axis;)V",
-                    shift = At.Shift.AFTER
+                    shift = At.Shift.AFTER,
+                    remap = true
             )
     )
     @SuppressWarnings("unchecked")

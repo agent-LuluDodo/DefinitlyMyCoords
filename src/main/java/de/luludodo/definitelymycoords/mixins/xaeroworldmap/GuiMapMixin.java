@@ -4,6 +4,7 @@ import de.luludodo.definitelymycoords.api.DMCApi;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.render.VertexConsumer;
+import org.spongepowered.asm.mixin.Debug;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArgs;
@@ -20,7 +21,8 @@ public class GuiMapMixin {
                     value = "INVOKE",
                     target = "Lxaero/map/graphics/MapRenderHelper;drawCenteredStringWithBackground(Lnet/minecraft/client/gui/DrawContext;Lnet/minecraft/client/font/TextRenderer;Ljava/lang/String;IIIFFFFLnet/minecraft/client/render/VertexConsumer;)V",
                     ordinal = 0
-            )
+            ),
+            remap = true
     )
     public void definitelymycoords$topCoords(DrawContext guiGraphics, TextRenderer font, String string, int x, int y, int color, float bgRed, float bgGreen, float bgBlue, float bgAlpha, VertexConsumer backgroundVertexBuffer) {
         String[] parts = string.split(" ");
